@@ -1,4 +1,4 @@
-﻿@model IEnumerable<prjProduct_core.Models.Product>
+﻿@model IEnumerable<prjProduct_core.ViewModel.CProductViewModel>
 @*標題*@
 <div class="breadcrumb-area">
     <!-- Top Breadcrumb Area -->
@@ -170,7 +170,7 @@
                                         <!-- Product Info -->
                                         <div class="product-info mt-15 text-center">
                                             <a>
-                                                @Html.ActionLink(@pd.ProductName, "detail", new { id = pd.ProductId })
+                                                @Html.ActionLink(@pd.ProductName, "detail", new { id = pd.ProductId },new { })
                                             </a>
                                             <h6>$@(Convert.ToInt32( pd.Price).ToString("0.0"))</h6>
                                         </div>
