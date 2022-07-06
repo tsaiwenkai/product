@@ -63,5 +63,40 @@ namespace prjProduct_core.Controllers
             pd.Star = q.Star;
             return View(pd);
         }
+        public IActionResult partialView()
+        {
+            var q = db.Products.Select(p => new CProductViewModel()
+            {
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                CategoryId = p.CategoryId,
+                Category = p.Category,
+                Country = p.Country,
+                Price = p.Price,
+                Description = p.Description,
+                Stock = p.Stock,
+                TakeDown = p.TakeDown,
+                Star = p.Star
+            });
+            return PartialView(q);
+        }
+        public IActionResult partialViewForCatgory(int id)
+        {
+            var q = db.Products.Where(p=>p.CategoryId==id).Select(p => new CProductViewModel()
+            {
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                CategoryId = p.CategoryId,
+                Category = p.Category,
+                Country = p.Country,
+                Price = p.Price,
+                Description = p.Description,
+                Stock = p.Stock,
+                TakeDown = p.TakeDown,
+                Star = p.Star
+            });
+            return PartialView(q);
+        }
     }
+
 }

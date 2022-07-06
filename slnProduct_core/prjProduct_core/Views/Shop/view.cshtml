@@ -52,10 +52,10 @@
                             <ul>
                                 <li>
                                     <ul class="dropdown">
-                                        <li><a href="index.html" style="color: #808080">所有產品</a></li>
-                                        <li><a href="about.html"style="color: #808080">咖啡豆</a></li>
-                                        <li><a href="about.html" style="color: #808080">咖啡器具</a></li>
-                                        <li><a href="about.html" style="color: #808080">消耗品</a></li>
+                                        <li id="selectall" style="color: #808080" >所有產品</li>
+                                        <li id="selectcoffee" style="color: #808080; transition: 0.5s">咖啡豆</li>
+                                        <li id="selecttool" style="color: #808080">咖啡器具</li>
+                                        <li id="selectconsume" style="color: #808080">消耗品</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -146,39 +146,8 @@
 
             <!-- All Products Area -->
             <div class="col-12 col-md-8 col-lg-9">
-                <div class="shop-products-area">
-                    <div class="row">
-                        @{
-                            foreach (var pd in Model)
-                            {
-                                <!-- Single Product Area -->
-                                <div class="col-12 col-sm-6 col-lg-4">
-                                    <div class="single-product-area mb-50">
-                                        <!-- Product Image -->
-                                        <div class="product-img">
-                                            <a href="shop-details.html"><img src="../img/Home-img/02.jpg" alt=""></a>
-                                            <!-- Product Tag -->
-                                            <div class="product-tag">
-                                                <a href="#">Hot</a>
-                                            </div>
-                                            <div class="product-meta d-flex">
-                                                <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-                                                <a href="cart.html" class="add-to-cart-btn">Add to cart</a>
-                                                <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a>
-                                            </div>
-                                        </div>
-                                        <!-- Product Info -->
-                                        <div class="product-info mt-15 text-center">
-                                            <a>
-                                                @Html.ActionLink(@pd.ProductName, "detail", new { id = pd.ProductId },new { })
-                                            </a>
-                                            <h6>$@(Convert.ToInt32( pd.Price).ToString("0.0"))</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        }
-
+                <div class="shop-products-area"  >
+                    <div class="row" id="showcard" style="transition: 0.5s">
                     </div>
 
                     <!-- Pagination -->
@@ -194,3 +163,23 @@
         </div>
     </div>
 </section>
+
+
+@section Scripts{
+    <script>
+        $("#showcard").load('@Url.Content("~/Shop/partialView")');
+        $('#selectall').click(function () {
+            $('#showcard').load('@Url.Content("~/Shop/partialView")');
+        });
+        $('#selectcoffee').click(function () {
+            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")'+"?id=1");
+        });
+        $('#selecttool').click(function () {
+            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")'+"?id=2");
+        });
+        $('#selectconsume').click(function () {
+            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")'+"?id=3");
+        });
+
+    </script>
+}
