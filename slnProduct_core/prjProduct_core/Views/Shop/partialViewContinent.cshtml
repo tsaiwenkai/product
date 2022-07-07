@@ -1,4 +1,4 @@
-﻿@model IEnumerable<prjProduct_core.ViewModel.CProductViewModel>
+﻿@model IEnumerable<prjProduct_core.ViewModel.CCoffeeViewModel>
 
 @{
     foreach (var pd in Model)
@@ -22,9 +22,9 @@
                 <!-- Product Info -->
                 <div class="product-info mt-15 text-center">
                     <a>
-                        @Html.ActionLink(@pd.ProductName, "detail", new { id = pd.ProductId }, new { })
+                        @Html.ActionLink(@pd.CoffeeName, "detail", new { id = pd.ProductId }, new { })
                     </a>
-                    <h6>$@(Convert.ToInt32( pd.Price).ToString("0.0"))</h6>
+                    <h6>$@(Convert.ToInt32( pd.Product.Price).ToString("0.0"))</h6>
                 </div>
             </div>
         </div>

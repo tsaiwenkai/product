@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<prjProduct_core.ViewModel.CProductViewModel>
-
 @*標題*@
 <div class="breadcrumb-area">
     <!-- Top Breadcrumb Area -->
@@ -74,10 +73,10 @@
                                         <li style="color: #808080" class="list">
                                             產地洲別
                                             <ul class="coffeelist">
-                                                <li><a href="index.html">非洲</a></li>
-                                                <li><a href="about.html">中美洲</a></li>
-                                                <li><a href="about.html">南美洲</a></li>
-                                                <li><a href="portfolio.html">亞洲</a></li>
+                                                <li id="J_1" style="color: #808080  ; cursor:pointer" class="coffc coffcj">非洲</li>
+                                                <li id="J_2" style="color: #808080  ; cursor:pointer" class="coffc coffcj">中美洲</li>
+                                                <li id="J_3" style="color: #808080  ; cursor:pointer" class="coffc coffcj">南美洲</li>
+                                                <li id="J_4" style="color: #808080  ; cursor:pointer" class="coffc coffcj">亞洲</li>
                                             </ul>
                                         </li>
                                         <li style="color: #808080" class="list">
@@ -113,19 +112,19 @@
                                         <li style="color: #808080" class="list">
                                             處理方式
                                             <ul class="coffeelist">
-                                                <li><a href="index.html">日曬</a></li>
-                                                <li><a href="about.html">水洗</a></li>
-                                                <li><a href="about.html">蜜處理</a></li>
-                                                <li><a href="portfolio.html">特殊處理</a></li>
+                                                <li id="w_1" style="color: #808080  ; cursor:pointer" class="coffc coffcw"> 日曬</li>
+                                                <li id="w_2" style="color: #808080  ; cursor:pointer" class="coffc coffcw">水洗</li>
+                                                <li id="w_3" style="color: #808080  ; cursor:pointer" class="coffc coffcw">蜜處理</li>
+                                                <li id="w_4" style="color: #808080  ; cursor:pointer" class="coffc coffcw">特殊處理</li>
                                             </ul>
                                         </li>
                                         <li style="color: #808080" class="list">
                                             包裝方法
                                             <ul class="coffeelist">
-                                                <li><a href="index.html">非洲</a></li>
-                                                <li><a href="about.html">中美洲</a></li>
-                                                <li><a href="about.html">南美洲</a></li>
-                                                <li><a href="portfolio.html">亞洲</a></li>
+                                                <li id="p_1" style="color: #808080  ; cursor:pointer" class="coffc coffcp">豆(半磅)</li>
+                                                <li id="p_2" style="color: #808080  ; cursor:pointer" class="coffc coffcp">豆(一磅)</li>
+                                                <li id="p_3" style="color: #808080  ; cursor:pointer" class="coffc coffcp">濾掛</li>
+                                                <li id="p_4" style="color: #808080  ; cursor:pointer" class="coffc coffcp">濾袋</li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -222,10 +221,12 @@
         .coffc {
             margin-left: 10px;
             font-size: 5px;
+            transition: transform 1s;
         }
 
         .coffeelist {
             display: none;
+            
         }
     </style>
 }
@@ -236,22 +237,35 @@
         $('#selectall').click(function () {
             $('#showcard').load('@Url.Content("~/Shop/partialView")');
         });
+        /*下拉式選單*/
         $(".coff").click(function () {
             let id = $(event.target).attr("id").substr(2);
             /*console.log(id)*/
             $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")' + "?id=" + id);
         });
-
         $(".coffcn").click(function(){
             let id = $(event.target).attr("id").substr(2);
-             $('#showcard').load('@Url.Content("~/Shop/LoadContry")' +"?id="+id);
+             $('#showcard').load('@Url.Content("~/Shop/partialViewContry")' +"?id="+id);
         })
          $(".coffcr").click(function(){
             let id = $(event.target).attr("id").substr(2);
-             $('#showcard').load('@Url.Content("~/Shop/LoadContry")' +"?id="+id);
+             $('#showcard').load('@Url.Content("~/Shop/partialViewRoast")' +"?id="+id);
+         })
+         $(".coffcw").click(function(){
+            let id = $(event.target).attr("id").substr(2);
+             $('#showcard').load('@Url.Content("~/Shop/partialViewProcess")' +"?id="+id);
+         })
+        $(".coffcp").click(function(){
+            let id = $(event.target).attr("id").substr(2);
+             $('#showcard').load('@Url.Content("~/Shop/partialViewPacking")' +"?id="+id);
         })
+        $(".coffcj").click(function(){
+            let id = $(event.target).attr("id").substr(2);
+             $('#showcard').load('@Url.Content("~/Shop/partialViewContinent")' +"?id="+id);
+        })
+        /*下拉式選單*/
 
-        $('.list').click(function () { $(event.target).children().toggle() })
+        $('.list').mouseover(function () { $(event.target).children().css("display", "block") }).mouseout(function () { $(event.target).children().css("display", "none") })
 
     </script>
 }
