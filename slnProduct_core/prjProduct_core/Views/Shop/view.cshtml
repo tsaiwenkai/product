@@ -103,11 +103,11 @@
                                         <li style="color: #808080" class="list">
                                             烘培程度
                                             <ul class="coffeelist" id="coffroast">
-                                                <li><a href="index.html">淺焙</a></li>
-                                                <li><a href="about.html">中淺焙</a></li>
-                                                <li><a href="about.html">中焙</a></li>
-                                                <li><a href="portfolio.html">中深焙</a></li>
-                                                <li><a href="portfolio.html">深焙</a></li>
+                                                <li id="r_1" style="color: #808080  ; cursor:pointer" class="coffc coffcr">淺焙</li>
+                                                <li id="r_2" style="color: #808080  ; cursor:pointer" class="coffc coffcr">中淺焙</li>
+                                                <li id="r_3" style="color: #808080  ; cursor:pointer" class="coffc coffcr">中焙</li>
+                                                <li id="r_4" style="color: #808080  ; cursor:pointer" class="coffc coffcr">中深焙</li>
+                                                <li id="r_5" style="color: #808080  ; cursor:pointer" class="coffc coffcr">深焙</li>
                                             </ul>
                                         </li>
                                         <li style="color: #808080" class="list">
@@ -243,6 +243,10 @@
         });
 
         $(".coffcn").click(function(){
+            let id = $(event.target).attr("id").substr(2);
+             $('#showcard').load('@Url.Content("~/Shop/LoadContry")' +"?id="+id);
+        })
+         $(".coffcr").click(function(){
             let id = $(event.target).attr("id").substr(2);
              $('#showcard').load('@Url.Content("~/Shop/LoadContry")' +"?id="+id);
         })
