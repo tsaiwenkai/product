@@ -55,10 +55,10 @@
                             <ul>
                                 <li>
                                     <ul class="dropdown">
-                                        <li><a href="index.html" style="color: #808080">所有產品</a></li>
-                                        <li  ><a href="" id="selectcoffee" style="color: #808080">咖啡豆</a></li>
-                                        <li><a href="about.html" style="color: #808080">咖啡器具</a></li>
-                                        <li><a href="about.html" style="color: #808080">消耗品</a></li>
+                                        <li id="selectall" style="color: #808080" >所有產品</li>
+                                        <li id="selectcoffee" style="color: #808080; transition: 0.5s">咖啡豆</li>
+                                        <li id="selecttool" style="color: #808080">咖啡器具</li>
+                                        <li id="selectconsume" style="color: #808080">消耗品</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -149,11 +149,10 @@
 
             <!-- All Products Area -->
             <div class="col-12 col-md-8 col-lg-9">
-                <div class="shop-products-area">
-                    @*生成卡片*@
-                    <div class="row" id="pdview">
-
+                <div class="shop-products-area"  >
+                    <div class="row" id="showcard" style="transition: 0.5s">
                     </div>
+
                     <!-- Pagination -->
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
@@ -167,9 +166,23 @@
         </div>
     </div>
 </section>
-@section Scripts{ 
+
+
+@section Scripts{
     <script>
-        $("#pdview").load('@Url.Content("~/Shop/partialView")')
-        $("#selectcoffee").click($("#pdview").load('@Url.Content("~/Shop/partialViewForCategory")' + "?id=1"));
+        $("#showcard").load('@Url.Content("~/Shop/partialView")');
+        $('#selectall').click(function () {
+            $('#showcard').load('@Url.Content("~/Shop/partialView")');
+        });
+        $('#selectcoffee').click(function () {
+            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")'+"?id=1");
+        });
+        $('#selecttool').click(function () {
+            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")'+"?id=2");
+        });
+        $('#selectconsume').click(function () {
+            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")'+"?id=3");
+        });
+
     </script>
 }
