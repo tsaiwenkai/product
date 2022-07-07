@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using prjProduct_core.Controllers
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +14,7 @@
     <link rel="icon" href="~/img/core-img/favicon.ico">
     <!-- Core Stylesheet -->
     <link href="~/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @await RenderSectionAsync("Style", required: false)
 </head>
 <body>
@@ -59,7 +61,10 @@
                                 </div>
                                 <!-- Login -->
                                 <div class="login">
-                                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
+                                    <a href="/Home/Login" id="loginID"><i class="fa fa-user" aria-hidden="true"></i> <span id="memname">@HomeController.MemName</span></a>
+                                </div>
+                                <div class="logout" id="logoutDiv" hidden>
+                                    <a href="/Home/Logout" id="logoutID"><i class="fa fa-user" aria-hidden="true"></i> <span>登出</span></a>
                                 </div>
                                 <!-- Cart -->
                                 <div class="cart">
@@ -164,7 +169,7 @@
     <!-- ##### Header Area End ##### -->
 
 
-    <div >
+    <div>
 
         <main role="main" class="pb-3">
 
@@ -189,6 +194,7 @@
     <script src="~/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="~/js/active.js"></script>
+    <script src="~/js/Loginout.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

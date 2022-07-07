@@ -10,7 +10,14 @@ namespace prjProduct_core.Controllers
 {
     public class ShopController : Controller
     {
-        CoffeeContext db = new CoffeeContext();
+
+        private readonly CoffeeContext db;
+        public ShopController(CoffeeContext context)
+        {
+            db = context;
+        }
+
+ 
         public IActionResult view()
         {
 
@@ -29,40 +36,7 @@ namespace prjProduct_core.Controllers
             });
             return View(q);
         }
-        public IActionResult partialView()
-        {
-            var q = db.Products.Select(p => new CProductViewModel()
-            {
-                ProductId = p.ProductId,
-                ProductName = p.ProductName,
-                CategoryId = p.CategoryId,
-                Category = p.Category,
-                Country = p.Country,
-                Price = p.Price,
-                Description = p.Description,
-                Stock = p.Stock,
-                TakeDown = p.TakeDown,
-                Star = p.Star
-            });
-            return PartialView(q);
-        }
-        public IActionResult partialViewForCategory(int? id)
-        {
-            var q = db.Products.Where(q=>q.CategoryId==id).Select(p => new CProductViewModel()
-            {
-                ProductId = p.ProductId,
-                ProductName = p.ProductName,
-                CategoryId = p.CategoryId,
-                Category = p.Category,
-                Country = p.Country,
-                Price = p.Price,
-                Description = p.Description,
-                Stock = p.Stock,
-                TakeDown = p.TakeDown,
-                Star = p.Star
-            });
-            return PartialView(q);
-        }
+ 
         public IActionResult detail(int? id)
         {
             CProductViewModel pd = new CProductViewModel();
@@ -114,8 +88,10 @@ namespace prjProduct_core.Controllers
             });
             return PartialView(q);
         }
+
         public IActionResult partialViewForCatgory(int id)
         {
+            
             var q = db.Products.Where(p=>p.CategoryId==id).Select(p => new CProductViewModel()
             {
                 ProductId = p.ProductId,
@@ -131,6 +107,23 @@ namespace prjProduct_core.Controllers
             });
             return PartialView(q);
         }
-    }
+        public IActionResult LoadContry(int id)
+        {
+            var q = db.Products.Where(p=>p.CountryId==id).Select(p => new CProductViewModel()
+            {
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                CategoryId = p.CategoryId,
+                Category = p.Category,
+                Country = p.Country,
+                Price = p.Price,
+                Description = p.Description,
+                Stock = p.Stock,
+                TakeDown = p.TakeDown,
+                Star = p.Star
+            });
+            return PartialView(q); 
+        }
 
+    }
 }

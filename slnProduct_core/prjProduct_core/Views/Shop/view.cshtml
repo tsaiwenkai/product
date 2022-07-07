@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<prjProduct_core.ViewModel.CProductViewModel>
 
-
-
 @*標題*@
 <div class="breadcrumb-area">
     <!-- Top Breadcrumb Area -->
@@ -55,10 +53,11 @@
                             <ul>
                                 <li>
                                     <ul class="dropdown">
-                                        <li id="selectall" style="color: #808080" >所有產品</li>
-                                        <li id="selectcoffee" style="color: #808080; transition: 0.5s">咖啡豆</li>
-                                        <li id="selecttool" style="color: #808080">咖啡器具</li>
-                                        <li id="selectconsume" style="color: #808080">消耗品</li>
+                                        <li id="selectall" style="color: #808080 ; cursor:pointer">所有產品</li>
+
+                                        <li id="s_1" style="color: #808080  ; cursor:pointer" class="coff">咖啡豆</li>
+                                        <li id="s_2" style="color: #808080;cursor:pointer" class="coff">咖啡器具</li>
+                                        <li id="s_3" style="color: #808080;cursor:pointer" class="coff">消耗品</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -72,11 +71,63 @@
                             <ul>
                                 <li>
                                     <ul class="dropdown">
-                                        <li><a href="index.html" style="color: #808080">產地洲別</a></li>
-                                        <li><a href="about.html" style="color: #808080">產地國家</a></li>
-                                        <li><a href="about.html" style="color: #808080">烘培程度</a></li>
-                                        <li><a href="about.html" style="color: #808080">處理方式</a></li>
-                                        <li><a href="about.html" style="color: #808080">包裝方法</a></li>
+                                        <li style="color: #808080" class="list">
+                                            產地洲別
+                                            <ul class="coffeelist">
+                                                <li><a href="index.html">非洲</a></li>
+                                                <li><a href="about.html">中美洲</a></li>
+                                                <li><a href="about.html">南美洲</a></li>
+                                                <li><a href="portfolio.html">亞洲</a></li>
+                                            </ul>
+                                        </li>
+                                        <li style="color: #808080" class="list">
+                                            產地國家
+                                            <ul class="coffeelist" id="coffcontry">
+                                                <li id="c_1" style="color: #808080  ; cursor:pointer" class="coffc coffcn">衣索比亞	</li>
+                                                <li id="c_2" style="color: #808080  ; cursor:pointer" class="coffc coffcn">肯亞	</li>
+                                                <li id="c_3" style="color: #808080  ; cursor:pointer" class="coffc coffcn">盧安達</li>
+                                                <li id="c_4" style="color: #808080  ; cursor:pointer" class="coffc coffcn">巴西</li>
+                                                <li id="c_5" style="color: #808080  ; cursor:pointer" class="coffc coffcn">祕魯</li>
+                                                <li id="c_6" style="color: #808080  ; cursor:pointer" class="coffc coffcn">巴拿馬	</li>
+                                                <li id="c_7" style="color: #808080  ; cursor:pointer" class="coffc coffcn">瓜地馬拉	</li>
+                                                <li id="c_8" style="color: #808080  ; cursor:pointer" class="coffc coffcn">薩爾瓦多</li>
+                                                <li id="c_9" style="color: #808080  ; cursor:pointer" class="coffc coffcn">宏都拉斯	</li>
+                                                <li id="c_10" style="color: #808080  ; cursor:pointer" class="coffc coffcn">哥倫比亞	</li>
+                                                <li id="c_11" style="color: #808080  ; cursor:pointer" class="coffc coffcn">哥斯大黎加</li>
+                                                <li id="c_12" style="color: #808080  ; cursor:pointer" class="coffc coffcn">印尼</li>
+                                                <li id="c_13" style="color: #808080  ; cursor:pointer" class="coffc coffcn">巴布亞新幾內亞</li>
+                                                <li id="c_14" style="color: #808080  ; cursor:pointer" class="coffc coffcn">台灣</li>
+                                                <li id="c_15" style="color: #808080  ; cursor:pointer" class="coffc coffcn">尼加拉瓜</li>
+                                            </ul>
+                                        </li>
+                                        <li style="color: #808080" class="list">
+                                            烘培程度
+                                            <ul class="coffeelist" id="coffroast">
+                                                <li><a href="index.html">淺焙</a></li>
+                                                <li><a href="about.html">中淺焙</a></li>
+                                                <li><a href="about.html">中焙</a></li>
+                                                <li><a href="portfolio.html">中深焙</a></li>
+                                                <li><a href="portfolio.html">深焙</a></li>
+                                            </ul>
+                                        </li>
+                                        <li style="color: #808080" class="list">
+                                            處理方式
+                                            <ul class="coffeelist">
+                                                <li><a href="index.html">日曬</a></li>
+                                                <li><a href="about.html">水洗</a></li>
+                                                <li><a href="about.html">蜜處理</a></li>
+                                                <li><a href="portfolio.html">特殊處理</a></li>
+                                            </ul>
+                                        </li>
+                                        <li style="color: #808080" class="list">
+                                            包裝方法
+                                            <ul class="coffeelist">
+                                                <li><a href="index.html">非洲</a></li>
+                                                <li><a href="about.html">中美洲</a></li>
+                                                <li><a href="about.html">南美洲</a></li>
+                                                <li><a href="portfolio.html">亞洲</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -149,7 +200,7 @@
 
             <!-- All Products Area -->
             <div class="col-12 col-md-8 col-lg-9">
-                <div class="shop-products-area"  >
+                <div class="shop-products-area">
                     <div class="row" id="showcard" style="transition: 0.5s">
                     </div>
 
@@ -166,7 +217,18 @@
         </div>
     </div>
 </section>
+@section Style{
+    <style>
+        .coffc {
+            margin-left: 10px;
+            font-size: 5px;
+        }
 
+        .coffeelist {
+            display: none;
+        }
+    </style>
+}
 
 @section Scripts{
     <script>
@@ -174,15 +236,18 @@
         $('#selectall').click(function () {
             $('#showcard').load('@Url.Content("~/Shop/partialView")');
         });
-        $('#selectcoffee').click(function () {
-            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")'+"?id=1");
+        $(".coff").click(function () {
+            let id = $(event.target).attr("id").substr(2);
+            /*console.log(id)*/
+            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")' + "?id=" + id);
         });
-        $('#selecttool').click(function () {
-            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")'+"?id=2");
-        });
-        $('#selectconsume').click(function () {
-            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")'+"?id=3");
-        });
+
+        $(".coffcn").click(function(){
+            let id = $(event.target).attr("id").substr(2);
+             $('#showcard').load('@Url.Content("~/Shop/LoadContry")' +"?id="+id);
+        })
+
+        $('.list').click(function () { $(event.target).children().toggle() })
 
     </script>
 }
