@@ -11,7 +11,7 @@
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="home"><i class="fa fa-home"></i> Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Shop</li>
                     </ol>
                 </nav>
@@ -64,15 +64,15 @@
                     </div>
 
                     <!-- Shop Widget -->
-                    <div class="shop-widget sort-by mb-50">
+                    <div class="shop-widget sort-by mb-50 coffcate">
                         <h4 class="widget-title">咖啡豆分類</h4>
                         <div class="widget-desc">
                             <ul>
                                 <li>
-                                    <ul class="dropdown">
+                                    <ul class="dropdown test1 " >
                                         <li style="color: #808080" class="list">
                                             產地洲別
-                                            <ul class="coffeelist">
+                                            <ul class="coffeelist animate__animated animate__fadeIn">
                                                 <li id="J_1" style="color: #808080  ; cursor:pointer" class="coffc coffcj">非洲</li>
                                                 <li id="J_2" style="color: #808080  ; cursor:pointer" class="coffc coffcj">中美洲</li>
                                                 <li id="J_3" style="color: #808080  ; cursor:pointer" class="coffc coffcj">南美洲</li>
@@ -81,7 +81,7 @@
                                         </li>
                                         <li style="color: #808080" class="list">
                                             產地國家
-                                            <ul class="coffeelist" id="coffcontry">
+                                            <ul class="coffeelist animate__animated animate__fadeIn" id="coffcontry">
                                                 <li id="c_1" style="color: #808080  ; cursor:pointer" class="coffc coffcn">衣索比亞	</li>
                                                 <li id="c_2" style="color: #808080  ; cursor:pointer" class="coffc coffcn">肯亞	</li>
                                                 <li id="c_3" style="color: #808080  ; cursor:pointer" class="coffc coffcn">盧安達</li>
@@ -101,7 +101,7 @@
                                         </li>
                                         <li style="color: #808080" class="list">
                                             烘培程度
-                                            <ul class="coffeelist" id="coffroast">
+                                            <ul class="coffeelist animate__animated animate__fadeIn" id="coffroast">
                                                 <li id="r_1" style="color: #808080  ; cursor:pointer" class="coffc coffcr">淺焙</li>
                                                 <li id="r_2" style="color: #808080  ; cursor:pointer" class="coffc coffcr">中淺焙</li>
                                                 <li id="r_3" style="color: #808080  ; cursor:pointer" class="coffc coffcr">中焙</li>
@@ -111,7 +111,7 @@
                                         </li>
                                         <li style="color: #808080" class="list">
                                             處理方式
-                                            <ul class="coffeelist">
+                                            <ul class="coffeelist animate__animated animate__fadeIn">
                                                 <li id="w_1" style="color: #808080  ; cursor:pointer" class="coffc coffcw"> 日曬</li>
                                                 <li id="w_2" style="color: #808080  ; cursor:pointer" class="coffc coffcw">水洗</li>
                                                 <li id="w_3" style="color: #808080  ; cursor:pointer" class="coffc coffcw">蜜處理</li>
@@ -120,7 +120,7 @@
                                         </li>
                                         <li style="color: #808080" class="list">
                                             包裝方法
-                                            <ul class="coffeelist">
+                                            <ul class="coffeelist animate__animated animate__fadeIn">
                                                 <li id="p_1" style="color: #808080  ; cursor:pointer" class="coffc coffcp">豆(半磅)</li>
                                                 <li id="p_2" style="color: #808080  ; cursor:pointer" class="coffc coffcp">豆(一磅)</li>
                                                 <li id="p_3" style="color: #808080  ; cursor:pointer" class="coffc coffcp">濾掛</li>
@@ -200,7 +200,7 @@
             <!-- All Products Area -->
             <div class="col-12 col-md-8 col-lg-9">
                 <div class="shop-products-area">
-                    <div class="row" id="showcard" style="transition: 0.5s">
+                    <div class="row" id="showcard">
                     </div>
 
                     <!-- Pagination -->
@@ -219,15 +219,21 @@
 @section Style{
     <style>
         .coffc {
-            margin-left: 10px;
+            margin-left: 5px;
             font-size: 5px;
-            transition: transform 1s;
         }
 
         .coffeelist {
             display: none;
-            
         }
+        .list {
+            cursor: default;
+            user-select: none;
+        }
+        .coffcate{
+            height:800px;
+        }
+
     </style>
 }
 
@@ -265,7 +271,7 @@
         })
         /*下拉式選單*/
 
-        $('.list').mouseover(function () { $(event.target).children().css("display", "block") }).mouseout(function () { $(event.target).children().css("display", "none") })
+        $('.list').click(function () { $(event.target).children().toggle() })
 
     </script>
 }

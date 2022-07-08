@@ -11,10 +11,12 @@
     <title>CSCoffee &amp; Landscaping HTML Template</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="~/img/core-img/favicon.ico">
+    <link rel="icon" href="/img/Home-img/coffee.png">
     <!-- Core Stylesheet -->
     <link href="~/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- animate style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     @await RenderSectionAsync("Style", required: false)
 </head>
 <body>
@@ -27,7 +29,7 @@
     </div>
 
     <!-- ##### Header Area Start ##### -->
-    <header class="header-area bg-dark">
+    <header class="header-area ">
 
         <!-- ***** Top Header Area ***** -->
         <div class="top-header-area">
@@ -103,41 +105,9 @@
                             <!-- Navbar Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">回首頁</a></li>
+                                    <li><a asp-controller="Home" asp-action="Index">回首頁</a></li>
                                     <li><a href="about.html">關於我</a></li>
-                                    <li>
-                                        <a asp-area="" asp-controller="Shop" asp-action="view">商品分類</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">產地洲別</a></li>
-                                            <li><a href="about.html">產地國別</a></li>
-                                            <li><a href="about.html">烘培度</a></li>
-                                            @*<a href="shop.html">Shop</a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="shop.html">Shop</a></li>
-                                                        <li><a href="shop-details.html">Shop Details</a></li>
-                                                        <li><a href="cart.html">Shopping Cart</a></li>
-                                                        <li><a href="checkout.html">Checkout</a></li>*
-                                                    </ul>
-                                                </li>*@
-                                            <li>
-                                                <a href="portfolio.html">處理法</a>
-                                                @*<a href="portfolio.html">Portfolio</a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="portfolio.html">Portfolio</a></li>
-                                                        <li><a href="single-portfolio.html">Portfolio Details</a></li>
-                                                    </ul>*@
-                                            </li>
-                                            <li>
-                                                <a href="blog.html">包裝方式</a>
-                                                @*<a href="blog.html">Blog</a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="blog.html">Blog</a></li>
-                                                        <li><a href="single-post.html">Blog Details</a></li>
-                                                    </ul>*@
-                                            </li>
-                                            @*<li><a href="contact.html">Contact</a></li>*@
-                                        </ul>
-                                    </li>
+                                    <li><a asp-area="" asp-controller="Shop" asp-action="view">商品</a></li>
                                     <li><a href="shop.html">相關文章</a></li>
                                     <li><a href="portfolio.html">填寫問券</a></li>
                                     <li><a href="contact.html">星座咖啡</a></li>
