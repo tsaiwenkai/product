@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using PagedList;
+using prjCSCoffee.Models;
 using prjProduct_core.Models;
 using prjProduct_core.ViewModel;
 using System;
@@ -10,9 +13,9 @@ namespace prjProduct_core.Controllers
 {
     public class ShopController : Controller
     {
-
+        
         private readonly CoffeeContext db;
-        public ShopController(CoffeeContext context)
+        public ShopController(CoffeeContext context )
         {
             db = context;
         }
@@ -21,6 +24,7 @@ namespace prjProduct_core.Controllers
         public IActionResult view()
         {
 
+
             var q = db.Products.Select(p => new CProductViewModel()
             {
                 ProductId = p.ProductId,
@@ -28,6 +32,7 @@ namespace prjProduct_core.Controllers
                 CategoryId = p.CategoryId,
                 Category = p.Category,
                 Country = p.Country,
+                Coffee = p.Coffee,
                 Price = p.Price,
                 Description = p.Description,
                 Stock = p.Stock,
@@ -39,46 +44,69 @@ namespace prjProduct_core.Controllers
 
         public IActionResult detail(int? id)
         {
-            CProductViewModel pd = new CProductViewModel();
-            var q = db.Products.FirstOrDefault(p => p.ProductId == id);
-            pd.ProductId = q.ProductId;
-            pd.ProductName = q.ProductName;
-            pd.CategoryId = q.CategoryId;
-            var q1 = db.Categories.FirstOrDefault(p => p.CategoryId == q.CategoryId);
-            pd.CategoryName = q1.CategoriesName;
-            pd.Country = q.Country;
-            pd.Price = q.Price;
-            pd.Description = q.Description;
-            pd.Stock = q.Stock;
-            pd.TakeDown = q.TakeDown;
-            pd.Star = q.Star;
-            return View(pd);
-        }
-        public IActionResult addToCart(int? id)
-        {
-            CProductViewModel pd = new CProductViewModel();
-            var q = db.Products.FirstOrDefault(p => p.ProductId == id);
-            pd.ProductId = q.ProductId;
-            pd.ProductName = q.ProductName;
-            pd.CategoryId = q.CategoryId;
-            var q1 = db.Categories.FirstOrDefault(p => p.CategoryId == q.CategoryId);
-            pd.CategoryName = q1.CategoriesName;
-            pd.Country = q.Country;
-            pd.Price = q.Price;
-            pd.Description = q.Description;
-            pd.Stock = q.Stock;
-            pd.TakeDown = q.TakeDown;
-            pd.Star = q.Star;
-            return View(pd);
-        }
-        public IActionResult partialView()
-        {
-            var q = db.Products.Select(p => new CProductViewModel()
+
+            var q = db.Products.Where(p=>p.ProductId==id).Select(p => new CProductViewModel()
             {
                 ProductId = p.ProductId,
                 ProductName = p.ProductName,
                 CategoryId = p.CategoryId,
                 Category = p.Category,
+                Coffee=p.Coffee,
+                Country = p.Country,
+                Price = p.Price,
+                Description = p.Description,
+                Stock = p.Stock,
+                TakeDown = p.TakeDown,
+                Star = p.Star
+            }).ToList();
+            return View(q);
+        }
+        
+        public IActionResult addToCart(int? id)
+        {
+
+            if (HttpContext.Session.Keys.Contains(CDictionary.SK_LOGINED_USER))
+            {
+                CProductViewModel pd = new CProductViewModel();
+                var q = db.Products.FirstOrDefault(p => p.ProductId == id);
+                pd.ProductId = q.ProductId;
+                pd.ProductName = q.ProductName;
+                pd.CategoryId = q.CategoryId;
+                var q1 = db.Categories.FirstOrDefault(p => p.CategoryId == q.CategoryId);
+                pd.CategoryName = q1.CategoriesName;
+                pd.Country = q.Country;
+                pd.Price = q.Price;
+                pd.Coffee = q.Coffee;
+                pd.Description = q.Description;
+                pd.Stock = q.Stock;
+                pd.TakeDown = q.TakeDown;
+                pd.Star = q.Star;
+                return View(pd);
+            }
+            else
+            {
+                
+                return RedirectToAction("Login","Home");
+            }
+           
+        }
+        
+
+
+        public IActionResult partialView(int id)
+        {
+            int pagesize=15;
+            int now = 0;
+
+                now = (id - 1) * pagesize;
+
+            var q = db.Products.Skip(now).Take(pagesize).Select(p => new CProductViewModel()
+            {
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                CategoryId = p.CategoryId,
+                Category = p.Category,
+                Coffee = p.Coffee,
                 Country = p.Country,
                 Price = p.Price,
                 Description = p.Description,
@@ -86,6 +114,7 @@ namespace prjProduct_core.Controllers
                 TakeDown = p.TakeDown,
                 Star = p.Star
             });
+
             return PartialView(q);
         }
 
@@ -100,6 +129,7 @@ namespace prjProduct_core.Controllers
                 Category = p.Category,
                 Country = p.Country,
                 Price = p.Price,
+                Coffee = p.Coffee,
                 Description = p.Description,
                 Stock = p.Stock,
                 TakeDown = p.TakeDown,

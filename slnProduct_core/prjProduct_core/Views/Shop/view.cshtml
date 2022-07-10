@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<prjProduct_core.ViewModel.CProductViewModel>
+
 @*標題*@
 <div class="breadcrumb-area">
     <!-- Top Breadcrumb Area -->
@@ -28,21 +29,6 @@
             <!-- Sidebar Area -->
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="shop-sidebar-area">
-
-                    <!-- Shop Widget -->
-                    <div class="shop-widget price mb-50">
-                        <h4 class="widget-title">Prices</h4>
-                        <div class="widget-desc">
-                            <div class="slider-range">
-                                <div data-min="8" data-max="30" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="8" data-value-max="30" data-label-result="Price:">
-                                    <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                    <span class="ui-slider-handle ui-state-default ui-corner-all first-handle" tabindex="0"></span>
-                                    <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                </div>
-                                <div class="range-price">Price: $8 - $30</div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Shop Widget -->
                     <div class="shop-widget catagory mb-50">
@@ -111,7 +97,7 @@
                                         </li>
                                         <li style="color: #808080" class="list">
                                             處理方式
-                                            <ul class="coffeelist animate__animated animate__fadeIn">
+                                            <ul class="coffeelist animate__animated animate__fadeIn dropdown">
                                                 <li id="w_1" style="color: #808080  ; cursor:pointer" class="coffc coffcw"> 日曬</li>
                                                 <li id="w_2" style="color: #808080  ; cursor:pointer" class="coffc coffcw">水洗</li>
                                                 <li id="w_3" style="color: #808080  ; cursor:pointer" class="coffc coffcw">蜜處理</li>
@@ -202,13 +188,9 @@
                 <div class="shop-products-area">
                     <div class="row" id="showcard">
                     </div>
-
                     <!-- Pagination -->
                     <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+                        <ul class="pagination" id="btnul">
                         </ul>
                     </nav>
                 </div>
@@ -225,13 +207,15 @@
 
         .coffeelist {
             display: none;
+            padding:5px;
         }
         .list {
             cursor: default;
             user-select: none;
+            color:#1e1e1e
         }
         .coffcate{
-            height:800px;
+            height:700px;
         }
 
     </style>
@@ -239,9 +223,25 @@
 
 @section Scripts{
     <script>
-        $("#showcard").load('@Url.Content("~/Shop/partialView")');
+        $("#showcard").load('@Url.Content("~/Shop/partialView")' + "?id=1");
+
+
+        $("#btnul").prepend(function () {
+            $.get('@Url.Content("~/API/loadAll")', function (data) {
+                let cont = parseInt (data) + 1;
+                for (let i = 1; i < cont+1; i++) {
+                    $("#btnul").prepend(`<li class=" page-item"><a class="page-link " id="Page${i}">${i}</a></li>`)
+                }
+            })
+        });
+        $(".page-link").click(function () {
+            let id = $(event.target).attr("id").substr(4);
+            console.log(id)
+            @*$("#showcard").load('@Url.Content("~/Shop/partialView")' + "?id="+id);*@
+        });
+
         $('#selectall').click(function () {
-            $('#showcard').load('@Url.Content("~/Shop/partialView")');
+            $('#showcard').load('@Url.Content("~/Shop/partialView")' +"?id=1");
         });
         /*下拉式選單*/
         $(".coff").click(function () {
