@@ -58,7 +58,7 @@
                                     <ul class="dropdown test1 " >
                                         <li style="color: #808080" class="list">
                                             產地洲別
-                                            <ul class="coffeelist animate__animated animate__fadeIn">
+                                            <ul class="coffeelist animate__animated animate__fadeIn" >
                                                 <li id="J_1" style="color: #808080  ; cursor:pointer" class="coffc coffcj">非洲</li>
                                                 <li id="J_2" style="color: #808080  ; cursor:pointer" class="coffc coffcj">中美洲</li>
                                                 <li id="J_3" style="color: #808080  ; cursor:pointer" class="coffc coffcj">南美洲</li>
@@ -207,7 +207,7 @@
 
         .coffeelist {
             display: none;
-            padding:5px;
+            
         }
         .list {
             cursor: default;
@@ -215,7 +215,7 @@
             color:#1e1e1e
         }
         .coffcate{
-            height:700px;
+            height:800px;
         }
 
     </style>
@@ -224,8 +224,11 @@
 @section Scripts{
     <script>
         $("#showcard").load('@Url.Content("~/Shop/partialView")' + "?id=1");
+         $('#selectall').click(function () {
+            $('#showcard').load('@Url.Content("~/Shop/partialView")' +"?id=1");
+        });
 
-
+       //換頁
         $("#btnul").prepend(function () {
             $.get('@Url.Content("~/API/loadAll")', function (data) {
                 let cont = parseInt (data) + 1;
@@ -236,13 +239,13 @@
         });
         $(".page-link").click(function () {
             let id = $(event.target).attr("id").substr(4);
-            console.log(id)
-            @*$("#showcard").load('@Url.Content("~/Shop/partialView")' + "?id="+id);*@
+            console.log(id)-- >
+                $("#showcard").load('@Url.Content("~/Shop/partialView")' + "?id=" + id);
         });
 
-        $('#selectall').click(function () {
-            $('#showcard').load('@Url.Content("~/Shop/partialView")' +"?id=1");
-        });
+
+
+
         /*下拉式選單*/
         $(".coff").click(function () {
             let id = $(event.target).attr("id").substr(2);
