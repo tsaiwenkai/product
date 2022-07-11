@@ -58,10 +58,11 @@ namespace prjProduct_core.Controllers
                 Stock = p.Stock,
                 TakeDown = p.TakeDown,
                 Star = p.Star
+
             }).ToList();
-            return View(q);
+            return View(q[0]);
         }
-        
+       
         public IActionResult addToCart(int? id)
         {
 
@@ -90,8 +91,6 @@ namespace prjProduct_core.Controllers
             }
            
         }
-        
-
 
         public IActionResult partialView(int id)
         {
@@ -221,24 +220,22 @@ namespace prjProduct_core.Controllers
             });
             return PartialView(q);
         }
-        public IActionResult partialViewContinent(int id)
+        public IActionResult partialViewBtnForCatgory(int id)
         {
-            var q = db.Coffees.Where(p => p.ConstellationId == id).Select(p => new CCoffeeViewModel()
+            var q = db.Products.Where(p => p.CategoryId == id).Select(p => new CProductViewModel()
             {
                 ProductId = p.ProductId,
-                CoffeeId = p.CoffeeId,
-                CoffeeName = p.CoffeeName,
-                CountryId = p.CountryId,
-                RoastingId = p.RoastingId,
-                ProcessId = p.ProcessId,
-                PackageId = p.PackageId,
-                ConstellationId = p.ConstellationId,
-                RainForest = p.RainForest,
+                ProductName = p.ProductName,
+                CategoryId = p.CategoryId,
+                Category = p.Category,
                 Country = p.Country,
-                Package = p.Package,
-                Process = p.Process,
-                Product = p.Product,
-                Roasting = p.Roasting
+                Price = p.Price,
+                Coffee = p.Coffee,
+                Description = p.Description,
+                Stock = p.Stock,
+                TakeDown = p.TakeDown,
+                Star = p.Star
+
             });
             return PartialView(q);
         }

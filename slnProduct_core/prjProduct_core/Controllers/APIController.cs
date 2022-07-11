@@ -21,5 +21,12 @@ namespace prjProduct_core.Controllers
             btn = q.Count() / 15;
             return Content($"{btn}", "text/plain", System.Text.Encoding.UTF8);
         }
+        public IActionResult loadCatory(int id)
+        {
+            int btn = 0;
+            var q = db.Products.Where(p => p.CategoryId == id);
+            btn = q.Count() / 15;
+            return Content($"{btn}", "text/plain", System.Text.Encoding.UTF8);
+        }
     }
 }

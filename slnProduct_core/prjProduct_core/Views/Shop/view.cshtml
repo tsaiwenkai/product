@@ -57,15 +57,6 @@
                                 <li>
                                     <ul class="dropdown test1 " >
                                         <li style="color: #808080" class="list">
-                                            產地洲別
-                                            <ul class="coffeelist animate__animated animate__fadeIn" >
-                                                <li id="J_1" style="color: #808080  ; cursor:pointer" class="coffc coffcj">非洲</li>
-                                                <li id="J_2" style="color: #808080  ; cursor:pointer" class="coffc coffcj">中美洲</li>
-                                                <li id="J_3" style="color: #808080  ; cursor:pointer" class="coffc coffcj">南美洲</li>
-                                                <li id="J_4" style="color: #808080  ; cursor:pointer" class="coffc coffcj">亞洲</li>
-                                            </ul>
-                                        </li>
-                                        <li style="color: #808080" class="list">
                                             產地國家
                                             <ul class="coffeelist animate__animated animate__fadeIn" id="coffcontry">
                                                 <li id="c_1" style="color: #808080  ; cursor:pointer" class="coffc coffcn">衣索比亞	</li>
@@ -233,15 +224,16 @@
             $.get('@Url.Content("~/API/loadAll")', function (data) {
                 let cont = parseInt (data) + 1;
                 for (let i = 1; i < cont+1; i++) {
-                    $("#btnul").prepend(`<li class=" page-item"><a class="page-link " id="Page${i}">${i}</a></li>`)
+                    $("#btnul").prepend(`<li class=" page-item"><a href="#" class=" page-link " id="Page${i}" onclick="loadpage()">${i}</a></li>`)
                 }
             })
         });
-        $(".page-link").click(function () {
+        function loadpage() {
             let id = $(event.target).attr("id").substr(4);
-            console.log(id)-- >
-                $("#showcard").load('@Url.Content("~/Shop/partialView")' + "?id=" + id);
-        });
+            /*console.log(id)*/
+             $("#showcard").load('@Url.Content("~/Shop/partialView")' + "?id=" + id);
+        }
+
 
 
 
@@ -251,6 +243,8 @@
             let id = $(event.target).attr("id").substr(2);
             /*console.log(id)*/
             $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")' + "?id=" + id);
+            $("#btnul").load('@Url.Content("~/Shop/partialViewBtnForCatgory")' + "?id=" + id);
+
         });
         $(".coffcn").click(function(){
             let id = $(event.target).attr("id").substr(2);
