@@ -30,3 +30,29 @@
         </div>
     }
 }
+
+
+<div>
+    <ul class="pagination" id="btnul">
+    </ul>
+</div>
+
+
+<script>
+
+    $("#btnul").append(function () {
+        $.get('@Url.Content("~/API/loadProcess")' + "?id=" +@Model.Select(p=>p.ProcessId).FirstOrDefault(), function (data) {
+            let cont = parseInt(data) + 1;
+
+                for (let i = 1; i < cont+1; i++) {
+                    $("#btnul").append(`<li class=" page-item"><a href="#" class=" page-link " id="Page${i}" onclick="loadpage()">${i}</a></li>`)
+                }
+        })
+    });
+
+        function loadpage() {
+            let id = $(event.target).attr("id").substr(4);
+            /*console.log(id)*/
+             $("#showcard").load('@Url.Content("~/Shop/partialViewProcess")' + "?id=" +@Model.Select(p=>p.ProcessId).FirstOrDefault()+"&page="+id);
+        }
+</script>

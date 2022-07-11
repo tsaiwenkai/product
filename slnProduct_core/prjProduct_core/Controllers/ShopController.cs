@@ -117,10 +117,12 @@ namespace prjProduct_core.Controllers
             return PartialView(q);
         }
 
-        public IActionResult partialViewForCatgory(int id)
+        public IActionResult partialViewForCatgory(int id ,int page)
         {
-
-            var q = db.Products.Where(p => p.CategoryId == id).Select(p => new CProductViewModel()
+            int pagesize = 15;
+            int now = 0;
+            now = (page - 1) * pagesize;
+            var q = db.Products.Where(p => p.CategoryId == id).Skip(now).Take(pagesize).Select(p => new CProductViewModel()
             {
                 ProductId = p.ProductId,
                 ProductName = p.ProductName,
@@ -136,9 +138,12 @@ namespace prjProduct_core.Controllers
             });
             return PartialView(q);
         }
-        public IActionResult partialViewContry(int id)
+        public IActionResult partialViewContry(int id, int page)
         {
-            var q = db.Coffees.Where(p => p.CountryId == id).Select(p => new CCoffeeViewModel()
+            int pagesize = 15;
+            int now = 0;
+            now = (page - 1) * pagesize;
+            var q = db.Coffees.Where(p => p.CountryId == id).Skip(now).Take(pagesize).Select(p => new CCoffeeViewModel()
             {
                 ProductId = p.ProductId,
                 CoffeeId = p.CoffeeId,
@@ -157,9 +162,12 @@ namespace prjProduct_core.Controllers
             });
             return PartialView(q);
         }
-        public IActionResult partialViewRoast(int id)
+        public IActionResult partialViewRoast(int id ,int page)
         {
-            var q = db.Coffees.Where(p => p.RoastingId == id).Select(p => new CCoffeeViewModel()
+            int pagesize = 15;
+            int now = 0;
+            now = (page - 1) * pagesize;
+            var q = db.Coffees.Where(p => p.RoastingId == id).Skip(now).Take(pagesize).Select(p => new CCoffeeViewModel()
             {
                 ProductId = p.ProductId,
                 CoffeeId = p.CoffeeId,
@@ -178,9 +186,12 @@ namespace prjProduct_core.Controllers
             });
             return PartialView(q);
         }
-        public IActionResult partialViewProcess(int id)
+        public IActionResult partialViewProcess(int id, int page)
         {
-            var q = db.Coffees.Where(p => p.ProcessId == id).Select(p => new CCoffeeViewModel()
+            int pagesize = 15;
+            int now = 0;
+            now = (page - 1) * pagesize;
+            var q = db.Coffees.Where(p => p.ProcessId == id).Skip(now).Take(pagesize).Select(p => new CCoffeeViewModel()
             {
                 ProductId = p.ProductId,
                 CoffeeId = p.CoffeeId,
@@ -199,9 +210,12 @@ namespace prjProduct_core.Controllers
             });
             return PartialView(q);
         }
-        public IActionResult partialViewPacking(int id)
+        public IActionResult partialViewPacking(int id, int page)
         {
-            var q = db.Coffees.Where(p => p.PackageId == id).Select(p => new CCoffeeViewModel()
+            int pagesize = 15;
+            int now = 0;
+            now = (page - 1) * pagesize;
+            var q = db.Coffees.Where(p => p.PackageId == id).Skip(now).Take(pagesize).Select(p => new CCoffeeViewModel()
             {
                 ProductId = p.ProductId,
                 CoffeeId = p.CoffeeId,

@@ -181,8 +181,7 @@
                     </div>
                     <!-- Pagination -->
                     <nav aria-label="Page navigation">
-                        <ul class="pagination" id="btnul">
-                        </ul>
+                       
                     </nav>
                 </div>
             </div>
@@ -196,10 +195,7 @@
             font-size: 5px;
         }
 
-        .coffeelist {
-            display: none;
-            
-        }
+
         .list {
             cursor: default;
             user-select: none;
@@ -215,60 +211,37 @@
 @section Scripts{
     <script>
         $("#showcard").load('@Url.Content("~/Shop/partialView")' + "?id=1");
+
          $('#selectall').click(function () {
             $('#showcard').load('@Url.Content("~/Shop/partialView")' +"?id=1");
         });
 
-       //換頁
-        $("#btnul").prepend(function () {
-            $.get('@Url.Content("~/API/loadAll")', function (data) {
-                let cont = parseInt (data) + 1;
-                for (let i = 1; i < cont+1; i++) {
-                    $("#btnul").prepend(`<li class=" page-item"><a href="#" class=" page-link " id="Page${i}" onclick="loadpage()">${i}</a></li>`)
-                }
-            })
-        });
-        function loadpage() {
-            let id = $(event.target).attr("id").substr(4);
-            /*console.log(id)*/
-             $("#showcard").load('@Url.Content("~/Shop/partialView")' + "?id=" + id);
-        }
-
-
-
-
-
         /*下拉式選單*/
         $(".coff").click(function () {
             let id = $(event.target).attr("id").substr(2);
-            /*console.log(id)*/
-            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")' + "?id=" + id);
-            $("#btnul").load('@Url.Content("~/Shop/partialViewBtnForCatgory")' + "?id=" + id);
+
+            $('#showcard').load('@Url.Content("~/Shop/partialViewForCatgory")' + "?id=" + id+"&page=1");
 
         });
+
         $(".coffcn").click(function(){
             let id = $(event.target).attr("id").substr(2);
-             $('#showcard').load('@Url.Content("~/Shop/partialViewContry")' +"?id="+id);
+            $('#showcard').load('@Url.Content("~/Shop/partialViewContry")' + "?id=" + id + "&page=1");
         })
          $(".coffcr").click(function(){
             let id = $(event.target).attr("id").substr(2);
-             $('#showcard').load('@Url.Content("~/Shop/partialViewRoast")' +"?id="+id);
+             $('#showcard').load('@Url.Content("~/Shop/partialViewRoast")' + "?id=" + id + "&page=1");
          })
          $(".coffcw").click(function(){
             let id = $(event.target).attr("id").substr(2);
-             $('#showcard').load('@Url.Content("~/Shop/partialViewProcess")' +"?id="+id);
+             $('#showcard').load('@Url.Content("~/Shop/partialViewProcess")' + "?id=" + id + "&page=1");
          })
         $(".coffcp").click(function(){
             let id = $(event.target).attr("id").substr(2);
-             $('#showcard').load('@Url.Content("~/Shop/partialViewPacking")' +"?id="+id);
-        })
-        $(".coffcj").click(function(){
-            let id = $(event.target).attr("id").substr(2);
-             $('#showcard').load('@Url.Content("~/Shop/partialViewContinent")' +"?id="+id);
+            $('#showcard').load('@Url.Content("~/Shop/partialViewPacking")' + "?id=" + id + "&page=1");
         })
         /*下拉式選單*/
 
-        $('.list').click(function () { $(event.target).children().toggle() })
 
     </script>
 }
