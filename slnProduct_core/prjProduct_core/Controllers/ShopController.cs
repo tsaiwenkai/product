@@ -44,7 +44,6 @@ namespace prjProduct_core.Controllers
 
         public IActionResult detail(int? id)
         {
-
             var q = db.Products.Where(p=>p.ProductId==id).Select(p => new CProductViewModel()
             {
                 ProductId = p.ProductId,
@@ -59,8 +58,8 @@ namespace prjProduct_core.Controllers
                 TakeDown = p.TakeDown,
                 Star = p.Star
 
-            }).ToList();
-            return View(q[0]);
+            }).FirstOrDefault();
+            return View(q);
         }
        
         public IActionResult addToCart(int? id)

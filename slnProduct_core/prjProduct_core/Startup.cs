@@ -63,7 +63,8 @@ namespace prjProduct_core
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+                    //pattern: "{controller=Shop}/{action=view}/{id?}");
+        });
         }
     }
 }

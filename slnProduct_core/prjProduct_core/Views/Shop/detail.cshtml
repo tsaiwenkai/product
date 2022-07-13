@@ -1,5 +1,5 @@
 ﻿@model prjProduct_core.ViewModel.CProductViewModel
-
+@using static prjProduct_core.Models.CoffeeContext
 <!-- ##### Breadcrumb Area Start ##### -->
 <div class="breadcrumb-area">
     <!-- Top Breadcrumb Area -->
@@ -87,11 +87,15 @@
                         @{
                             if (Model.CategoryId == 1)
                             {
-
+                                CoffeeContext db = new CoffeeContext();
+                                var q = db.Coffees.Where(p => p.ProductId == Model.ProductId).ToList();
+                                var q1 = db.Countries.Where(p => p.CountryId == q[0].CountryId).FirstOrDefault();
+                                //var q1 = db.Countries.Where(p => p.CountryId == q[0].CountryId).FirstOrDefault();
+                                //var q1 = db.Countries.Where(p => p.CountryId == q[0].CountryId).FirstOrDefault();
                                 <div class="products--meta">
-                                    <p><span>產地:</span> <span>@Model.Country.CountryName</span></p>
-                                    <p><span>烘培程度:</span>@*@Html.DisplayFor(p=>p.Coffee.Roasting.RoastingName)*@</p>
-                                    <p><span>處理方法:</span> <span>@*@Model[0].Coffee.Process.ProcessName*@</span></p>       
+                                    <p><span>產地:</span> <span>@q1.CountryName</span></p>
+                                    <p><span>烘培程度:</span>@*@q.Coffee.Roasting.RoastingName*@</p>
+                                    <p><span>處理方法:</span> <span></span></p>       
                                     <p>
                                         <span>Share on:</span>
                                         <span>
